@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
   s.author       = { "Paul Steinhilber" => "git@paulsteinhilber.de" }
   s.source       = { :git => "https://github.com/pres/PREColorPickerController.git", :tag => s.version.to_s }
-  s.source_files = 'TODO:'
+  s.source_files = 'PREColorPickerController/*'
   s.platform     = :ios, '7.0'
   s.requires_arc = true
 end
