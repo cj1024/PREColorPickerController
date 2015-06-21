@@ -308,6 +308,7 @@
 				3DE352091B24DD7900E02A9E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

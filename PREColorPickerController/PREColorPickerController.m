@@ -25,6 +25,8 @@
 #import "PREColorPickerController.h"
 
 @interface PREColorPickerController () {
+    IBOutlet UIView* rView;
+    
     IBOutlet UISlider* rSlider;
     IBOutlet UISlider* gSlider;
     IBOutlet UISlider* bSlider;
@@ -38,6 +40,12 @@
 @end
 
 @implementation PREColorPickerController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.topLayoutGuide attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:rView attribute:NSLayoutAttributeTop multiplier:1 constant:-8]];
+}
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
