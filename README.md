@@ -18,5 +18,5 @@ pod 'PREColorPickerController'
 ```
 
 ## TODO:
-- Provide usage Sample in ReadMe.dm
+- Provide usage Sample in ReadMe.md
 - Document Code
