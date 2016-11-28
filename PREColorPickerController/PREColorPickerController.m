@@ -136,15 +136,6 @@
 	CGFloat blu = bSlider.value;
     CGFloat alp = aSlider.value;
     
-    rSlider.minimumTrackTintColor = [UIColor colorWithRed:red/255. green:gre/255. blue:blu/255. alpha:alp/255.];
-    rSlider.maximumTrackTintColor = [UIColor colorWithRed:1 green:gre/255. blue:blu/255. alpha:alp/255.];
-    gSlider.minimumTrackTintColor = [UIColor colorWithRed:red/255. green:gre/255. blue:blu/255. alpha:alp/255.];
-    gSlider.maximumTrackTintColor = [UIColor colorWithRed:red/255. green:1 blue:blu/255. alpha:alp/255.];
-    bSlider.minimumTrackTintColor = [UIColor colorWithRed:red/255. green:gre/255. blue:blu/255. alpha:alp/255.];
-    bSlider.maximumTrackTintColor = [UIColor colorWithRed:red/255. green:gre/255. blue:1 alpha:alp/255.];
-    aSlider.minimumTrackTintColor = [UIColor colorWithRed:red/255. green:gre/255. blue:blu/255. alpha:alp/255.];
-    aSlider.maximumTrackTintColor = [UIColor colorWithRed:red/255. green:gre/255. blue:blu/255. alpha:1];
-    
 	self.color = [UIColor colorWithRed:red/255. green:gre/255. blue:blu/255. alpha:alp/255.];
 	[imageView setBackgroundColor:self.color];
     
