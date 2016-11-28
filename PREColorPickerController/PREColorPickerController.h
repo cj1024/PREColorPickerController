@@ -31,9 +31,9 @@
 @property (nonatomic, weak) id<PREColorPickerControllerDelegate> delegate;
 
 /// initial color for the color picker
-@property (nonatomic, retain) UIColor* color;
+@property (nonatomic, strong) UIColor* color;
 
 /// color picker changes the tintColor of the UINavigationBar of the UINavigationController it is pushed onto
-@property (atomic) BOOL changeNavigationBarTintColor;
+@property (nonatomic, assign) BOOL changeNavigationBarTintColor;
 
 @end

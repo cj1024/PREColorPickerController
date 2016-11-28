@@ -27,6 +27,6 @@
 @protocol PREColorPickerControllerDelegate <NSObject>
 
 @required
-- (void)colorPicker:(PREColorPickerController*)colorPicker didFinishPickingColor:(UIColor*)color withRed:(int)red green:(int)green blue:(int)blue;
+- (void)colorPicker:(PREColorPickerController *)colorPicker didFinishPickingColor:(UIColor *)color withRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha;
 
 @end

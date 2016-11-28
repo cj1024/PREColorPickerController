@@ -26,14 +26,19 @@
 
 @interface PREColorPickerController () {
     IBOutlet UIView* rView;
+    IBOutlet UIView* gView;
+    IBOutlet UIView* bView;
+    IBOutlet UIView* aView;
     
     IBOutlet UISlider* rSlider;
     IBOutlet UISlider* gSlider;
     IBOutlet UISlider* bSlider;
+    IBOutlet UISlider* aSlider;
     
     IBOutlet UITextField* rField;
     IBOutlet UITextField* gField;
     IBOutlet UITextField* bField;
+    IBOutlet UITextField* aField;
     
     IBOutlet UIImageView* imageView;
 }
@@ -58,9 +63,11 @@
     rField.text = [NSString stringWithFormat:@"%.0f", red*255];
     gField.text = [NSString stringWithFormat:@"%.0f", green*255];
     bField.text = [NSString stringWithFormat:@"%.0f", blue*255];
+    aField.text = [NSString stringWithFormat:@"%.0f", alpha*255];
     [rSlider setValue:red*255];
     [gSlider setValue:green*255];
     [bSlider setValue:blue*255];
+    [aSlider setValue:alpha*255];
     
     [self colorChanged];
     
@@ -77,7 +84,8 @@
 	rField.text = [NSString stringWithFormat:@"%.0f", rSlider.value];
 	gField.text = [NSString stringWithFormat:@"%.0f", gSlider.value];
 	bField.text = [NSString stringWithFormat:@"%.0f", bSlider.value];
-	
+    aField.text = [NSString stringWithFormat:@"%.0f", aSlider.value];
+    
 	[self colorChanged];
 }
 
@@ -94,7 +102,9 @@
 		[gSlider setValue:[string intValue] animated:YES];
 	} else if (textField == bField) {
 		[bSlider setValue:[string intValue] animated:YES];
-	}
+    } else if (textField == aField) {
+        [aSlider setValue:[string intValue] animated:YES];
+    }
 	
 	[self colorChanged];
 	
@@ -115,23 +125,35 @@
 	if ([gField isFirstResponder])
 		[gField resignFirstResponder];
 	if ([bField isFirstResponder])
-		[bField resignFirstResponder];
+        [bField resignFirstResponder];
+    if ([aField isFirstResponder])
+        [aField resignFirstResponder];
 }
 
 - (void)colorChanged {
-	int red = rSlider.value;
-	int gre = gSlider.value;
-	int blu = bSlider.value;
+	CGFloat red = rSlider.value;
+	CGFloat gre = gSlider.value;
+	CGFloat blu = bSlider.value;
+    CGFloat alp = aSlider.value;
     
-	self.color = [UIColor colorWithRed:red/255. green:gre/255. blue:blu/255. alpha:1];
+    rSlider.minimumTrackTintColor = [UIColor colorWithRed:red/255. green:gre/255. blue:blu/255. alpha:alp/255.];
+    rSlider.maximumTrackTintColor = [UIColor colorWithRed:1 green:gre/255. blue:blu/255. alpha:alp/255.];
+    gSlider.minimumTrackTintColor = [UIColor colorWithRed:red/255. green:gre/255. blue:blu/255. alpha:alp/255.];
+    gSlider.maximumTrackTintColor = [UIColor colorWithRed:red/255. green:1 blue:blu/255. alpha:alp/255.];
+    bSlider.minimumTrackTintColor = [UIColor colorWithRed:red/255. green:gre/255. blue:blu/255. alpha:alp/255.];
+    bSlider.maximumTrackTintColor = [UIColor colorWithRed:red/255. green:gre/255. blue:1 alpha:alp/255.];
+    aSlider.minimumTrackTintColor = [UIColor colorWithRed:red/255. green:gre/255. blue:blu/255. alpha:alp/255.];
+    aSlider.maximumTrackTintColor = [UIColor colorWithRed:red/255. green:gre/255. blue:blu/255. alpha:1];
+    
+	self.color = [UIColor colorWithRed:red/255. green:gre/255. blue:blu/255. alpha:alp/255.];
 	[imageView setBackgroundColor:self.color];
     
     if (self.changeNavigationBarTintColor) {
         [self.navigationController.navigationBar setTintColor:self.color];
     }
     
-    if (self.delegate && [self.delegate respondsToSelector:@selector(colorPicker:didFinishPickingColor:withRed:green:blue:)]) {
-        [self.delegate colorPicker:self didFinishPickingColor:self.color withRed:red green:gre blue:blu];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(colorPicker:didFinishPickingColor:withRed:green:blue:alpha:)]) {
+        [self.delegate colorPicker:self didFinishPickingColor:self.color withRed:red green:gre blue:blu alpha:alp];
     } else {
         NSLog(@"[PREColorPickerController] Warning! Delegate method missing.");
     }
